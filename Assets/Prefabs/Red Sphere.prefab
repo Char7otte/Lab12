@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4930222840536575099}
   m_Layer: 0
   m_Name: Red Sphere
-  m_TagString: Untagged
+  m_TagString: red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
