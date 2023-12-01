@@ -10,10 +10,6 @@ public class SpawnScript : MonoBehaviour
     private Camera mainCamera = default;
     private float height;
     private float width;
-
-    [SerializeField]private TextMeshProUGUI scoreTextDisplay = default;
-
-    [SerializeField]private TextMeshProUGUI timeTextDisplay = default;
     
     private void Awake() {
         mainCamera = Camera.main;
@@ -69,7 +65,6 @@ public class SpawnScript : MonoBehaviour
 
                 var _scoreValue = GameManager.instance.scoreValue;
                 _scoreValue += pointGain;
-                scoreTextDisplay.text = "Score: " + _scoreValue;
 
                 GameManager.instance.scoreValue = _scoreValue;
 
@@ -85,7 +80,6 @@ public class SpawnScript : MonoBehaviour
     private void CountUpTimer() {
         var _timeValue = GameManager.instance.timeValue;
         _timeValue += Time.deltaTime;
-        timeTextDisplay.text = "Timer: " + _timeValue.ToString("F0");
 
         GameManager.instance.timeValue = _timeValue;
 
