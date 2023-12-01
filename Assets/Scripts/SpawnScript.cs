@@ -11,10 +11,8 @@ public class SpawnScript : MonoBehaviour
     private float height;
     private float width;
 
-    private int scoreValue = default;
     [SerializeField]private TextMeshProUGUI scoreTextDisplay = default;
 
-    private float timeValue;
     [SerializeField]private TextMeshProUGUI timeTextDisplay = default;
     
     private void Awake() {
@@ -67,10 +65,16 @@ public class SpawnScript : MonoBehaviour
                 }
 
                 Destroy(_hit);
-                scoreValue += pointGain;
-                scoreTextDisplay.text = "Score: " + scoreValue;
 
-                if (scoreValue >= 15) ChangeScene("GameWin");
+                var _scoreValue = GameManager.instance.scoreValue;
+                _scoreValue += pointGain;
+                scoreTextDisplay.text = "Score: " + _scoreValue;
+
+                GameManager.instance.scoreValue = _scoreValue;
+
+                if (_scoreValue >= 15)  {
+                    ChangeScene("GameWin");
+                }
 
             }
             else Debug.DrawLine(mainCamera.transform.position, worldMousePosition, Color.red, 0.5f);
@@ -78,10 +82,13 @@ public class SpawnScript : MonoBehaviour
     }
 
     private void CountUpTimer() {
-        timeValue += Time.deltaTime;
-        timeTextDisplay.text = "Timer: " + timeValue.ToString("F0");
+        var _timeValue = GameManager.instance.timeValue;
+        _timeValue += Time.deltaTime;
+        timeTextDisplay.text = "Timer: " + _timeValue.ToString("F0");
 
-        if (timeValue >= 10) ChangeScene("GameLose");
+        GameManager.instance.timeValue = _timeValue;
+
+        if (_timeValue >= 10) ChangeScene("GameLose");
     }
 
     private void ChangeScene(string newSceneName) {
