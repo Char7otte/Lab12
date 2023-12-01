@@ -10,7 +10,11 @@ public class GameManager : MonoBehaviour
     public float timeValue;
 
     private void Awake() {
-        if (instance != null) Destroy(this);
-        else instance = this;
+        if (instance == null) {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+
+        else Destroy(this);
     }
 }
