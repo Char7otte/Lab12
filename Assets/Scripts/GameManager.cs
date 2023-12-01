@@ -17,4 +17,9 @@ public class GameManager : MonoBehaviour
 
         else Destroy(this);
     }
+
+    public void ResetVariables() {
+        scoreValue = 0;
+        timeValue = 0;
+    }
 }
