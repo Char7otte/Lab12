@@ -27,7 +27,8 @@ public class SpawnScript : MonoBehaviour
     }
 
     private void Start() {
-        InvokeRepeating("SpawnObject", 1.0f, 2.0f);
+        InvokeRepeating("SpawnObject", 1.0f, 1.0f);
+        InvokeRepeating("SpawnObject", 1.0f, 1.0f);
     }
 
     private void Update() {
