@@ -30,7 +30,6 @@ public class SpawnScript : MonoBehaviour
 
     private void Update() {
         RaycastScript();
-        scoreTextDisplay.text = "Score: " + scoreValue;
     }
 
     private void SpawnObject() {
@@ -52,12 +51,19 @@ public class SpawnScript : MonoBehaviour
             if (Physics.Raycast(mainCamera.transform.position, direction, out hit, 100f)) {
                 Debug.DrawLine(mainCamera.transform.position, hit.point, Color.green, 0.5f);
 
-                if (hit.collider.gameObject.tag == "red") {
-                    scoreValue--;
+                var _hit = hit.collider.gameObject;
+                var pointGain = 0;
+
+                if (_hit.tag == "red") {
+                    pointGain = -1;
                 }
-                if (hit.collider.gameObject.tag == "green") {
-                    scoreValue++;
+                if (_hit.tag == "green") {
+                    pointGain = 1;
                 }
+
+                Destroy(_hit);
+                scoreValue += pointGain;
+                scoreTextDisplay.text = "Score: " + scoreValue;
             }
             else {
                 Debug.DrawLine(mainCamera.transform.position, worldMousePosition, Color.red, 0.5f);
